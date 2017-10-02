@@ -1,3 +1,0 @@
-[submodule "pcre"]
-	path = pcre
-	url = https://git.gitorious.org/pcre/pcre.git

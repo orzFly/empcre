@@ -41,3 +41,6 @@ node_modules
 *.i*86
 *.x86_64
 *.hex
+
+/pcre
+/pcre-*.tar.gz

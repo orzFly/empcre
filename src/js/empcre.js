@@ -12,7 +12,7 @@
 
     var REMatch_destroy = Module.cwrap('REMatch_destroy', 'null', ['number']);
     var REMatch_get_length = Module.cwrap('REMatch_get_length', 'number', ['number']);
-    var REMatch_get_match_at = Module.cwrap('REMatch_get_match_at', 'string', ['number']);
+    var REMatch_get_match_at = Module.cwrap('REMatch_get_match_at', 'string', ['number', 'number']);
 
     window.RE = RE;
 
@@ -31,6 +31,9 @@
     RE.method('_new', 'number', ['string', 'string']);
     RE.method('_match', 'number', ['number', 'string', 'number']);
     RE.method('_hasFlag', 'number', ['number', 'string']);
+    RE.method('_get_name_length', 'number', ['number']);
+    RE.method('_get_name_id_at', 'number', ['number', 'number']);
+    RE.method('_get_name_at', 'string', ['number', 'number']);
 
     RE.prototype.toString = function () {
         return '/' + this.pattern + '/' + this.flags;
@@ -38,12 +41,18 @@
 
     RE.prototype.buildRe = function () {
         if (!this._re) {
-            console.warn('Allocating memory for ' + this);
+            //console.warn('Allocating memory for ' + this);
             this._re = RE._new(this.pattern, this.flags);
             this.ignoreCase = this._hasFlag('ignoreCase');
             this.multiline = this._hasFlag('multiline');
             this.dotall = this._hasFlag('dotall');
             this.jsCompat = this._hasFlag('jsCompat');
+            this.extended = this._hasFlag('jsCompat');
+            this.names = {};
+            let nameCount = this._get_name_length();
+            for(var i = 0; i < nameCount; i++) {
+                this.names[this._get_name_at(i)] = this._get_name_id_at(i)
+            }
         }
 
         // Try to manage memory automatically
@@ -57,7 +66,7 @@
     };
 
     RE.prototype.destroy = function () {
-        console.warn('Cleaning up memory for ' + this);
+        //console.warn('Cleaning up memory for ' + this);
         this._destroy();
         this._re = null;
     };
@@ -73,6 +82,14 @@
 
         for (var i = 0, len = REMatch_get_length(matchPtr); i < len; i++) {
             Array.prototype.push.call(matches, REMatch_get_match_at(matchPtr, i));
+        }
+
+        for (var prop in this.names) {
+          if (this.names.hasOwnProperty(prop)) {
+            if (matches[this.names[prop]]) {
+                matches[prop] = matches[this.names[prop]];
+            }
+          }
         }
 
         REMatch_destroy(matchPtr);

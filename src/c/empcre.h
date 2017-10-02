@@ -11,6 +11,10 @@ typedef struct {
     bool multiline;
     bool dotall;
     bool jsCompat;
+    bool extended;
+    int name_count;
+    char *name_table;
+    int name_size;
 } RE;
 
 typedef struct {
@@ -26,6 +30,12 @@ void RE_destroy(RE *re);
 RE *RE_new(const char *pattern, const char *flags);
 //@export
 bool RE_hasFlag(RE *re, const char *flag);
+//@export
+int RE_get_name_length(RE *re);
+//@export
+int RE_get_name_id_at(RE *re, int i);
+//@export
+const char *RE_get_name_at(RE *re, int i);
 
 REMatch *REMatch_make();
 //@export
