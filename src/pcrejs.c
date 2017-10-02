@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "empcre.h"
+#include "pcrejs.h"
 
 RE *RE_make() {
     RE *re = malloc(sizeof(RE));

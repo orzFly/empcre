@@ -1,0 +1,9 @@
+{
+  "name": "pcre.js",
+  "version": "0.0.0",
+  "description": "PCRE.js",
+  "main": "index.js",
+  "repository": "https://github.com/orzfly/pcre.js",
+  "author": "Yeechan Lu <wz.bluesnow@gmail.com>",
+  "license": "BSD-3-Clause-Clear"
+}
