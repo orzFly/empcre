@@ -17,8 +17,8 @@
     root.PCRE = factory(native);
   }
 }(this, function (Module) {
-  var method = function (cls, ptrProp, methodName, ret, args) {
-    var fn = Module.cwrap(cls.name + methodName, ret, args);
+  var method = function (cls, clsName, ptrProp, methodName, ret, args) {
+    var fn = Module.cwrap(clsName + methodName, ret, args);
     cls.prototype[methodName] = function () {
       var ptr = this[ptrProp];
       var args = [ptr && ptr.call ? ptr.call(this) : ptr];
@@ -38,7 +38,7 @@
   }
 
   RE.method = function (methodName, ret, args) {
-    method(this, '_re', methodName, ret, args);
+    method(this, 'RE', '_re', methodName, ret, args);
   };
 
   RE._new = Module.cwrap('RE_new', 'number', ['string', 'string']);
