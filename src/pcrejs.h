@@ -44,5 +44,4 @@ void REMatch_destroy(REMatch *m);
 REMatch *RE_match(RE *re, const char *input, int startoffset);
 //@export
 int REMatch_get_length(REMatch *match);
-//@export
 const char *REMatch_get_match_at(REMatch *match, int i);

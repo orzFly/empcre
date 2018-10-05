@@ -1,9 +1,9 @@
 {
   "name": "pcre.js",
-  "version": "0.0.0",
-  "description": "PCRE.js",
+  "version": "0.0.2",
+  "description": "Emscripten PCRE.js working version",
   "main": "index.js",
-  "repository": "https://github.com/orzfly/pcre.js",
-  "author": "Yeechan Lu <wz.bluesnow@gmail.com>",
+  "repository": "https://github.com/Dexmaster/pcre.js",
+  "author": "Yeechan Lu <wz.bluesnow@gmail.com>, Andrii Malytskyi <a.malytskyi@gmail.com>",
   "license": "BSD-3-Clause-Clear"
 }
