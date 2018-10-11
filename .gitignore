@@ -44,3 +44,6 @@ node_modules
 
 /pcre
 /pcre-*.tar.gz
+
+/emsdk
+.idea

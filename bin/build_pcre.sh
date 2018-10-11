@@ -7,7 +7,7 @@ if [ ! -d pcre ]; then
 fi
 
 cd pcre
-emconfigure ./configure --enable-static --disable-shared --enable-utf8
+emconfigure ./configure --enable-static --disable-shared --enable-utf --enable-unicode-properties
 emmake make
 cd ..
 

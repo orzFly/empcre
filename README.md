@@ -1,6 +1,26 @@
-PCRE.js
+PCRE (on Emscripten) for browser
 =======
 
-<a target='_blank' rel='nofollow' href='https://app.codesponsor.io/link/C3uaS5cM1DPVgDuEekjGueTv/orzFly/pcre.js'>
-  <img alt='Sponsor' width='888' height='68' src='https://app.codesponsor.io/embed/C3uaS5cM1DPVgDuEekjGueTv/orzFly/pcre.js.svg' />
-</a>
+ - used https://github.com/orzFly/pcre.js as a base
+ - added UMD for proper requires and imports
+ - updated emscripten and provided emsdk build example script
+ - fixed small fixes while using newer emscripten (--enable-utf8 => --enable-utf etc.)
+ - added --enable-unicode-properties for unicode properties
+
+## Build/Development
+To rebuild dist:
+```bash
+./bin/build_pcre.sh
+
+git clone https://github.com/juj/emsdk.git
+./bin/build_emsdk.sh
+
+./bin/build.sh
+```
+
+Some parts of build might be cached, on rerun:
+```bash
+./bin/build_emsdk.sh
+
+./bin/build.sh
+```
